@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Green Fresh</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="no_account">Belum punya akun?</string>
+    <string name="register_here">Register disini</string>
+    <string name="logout">Logout</string>
+    <string name="my_plants">Tanaman Saya</string>
+    <string name="add_plant">Tambah Tanaman</string>
+    <string name="care_schedule">Jadwal Perawatan</string>
+</resources>

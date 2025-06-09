@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "191943060737",
+    "firebase_url": "https://greenfresh-7fb91-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "greenfresh-7fb91",
+    "storage_bucket": "greenfresh-7fb91.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191943060737:android:ea6232d72dc232c7333f00",
+        "android_client_info": {
+          "package_name": "com.example.greenfresh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxfhzF1YcX8G8ybKgHRKs92clqQflI3zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

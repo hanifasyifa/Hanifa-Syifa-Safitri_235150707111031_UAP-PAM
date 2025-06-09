@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Background color -->
+    <color name="background_color">#F3F8FE</color>
+
+    <!-- Primary colors -->
+    <color name="green_primary">#4CAF50</color>
+    <color name="green_pressed">#45A049</color>
+
+    <color name="green_secondary">#4CAF50</color>
+    <color name="green_light">#A5D6A7</color>
+
+    <!-- Text colors -->
+    <color name="text_hint">#9E9E9E</color> <!-- abu-abu terang, bisa disesuaikan -->
+
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#666666</color>
+</resources>
