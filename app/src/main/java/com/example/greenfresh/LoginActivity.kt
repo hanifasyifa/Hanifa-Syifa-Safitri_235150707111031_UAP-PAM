@@ -6,8 +6,8 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.example.greenfresh.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -19,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
         setupClickListeners()
     }
@@ -36,13 +35,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validateInput(email: String, password: String): Boolean {
-        // Reset errors
         binding.tilEmail.error = null
         binding.tilPassword.error = null
 
         var isValid = true
 
-        // Validate email
         if (email.isEmpty()) {
             binding.tilEmail.error = "Email tidak boleh kosong"
             isValid = false
@@ -51,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
             isValid = false
         }
 
-        // Validate password
         if (password.isEmpty()) {
             binding.tilPassword.error = "Password tidak boleh kosong"
             isValid = false
@@ -68,13 +64,10 @@ class LoginActivity : AppCompatActivity() {
                 showLoading(false)
 
                 if (task.isSuccessful) {
-                    // Login success
                     Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
 
-                    // Navigate to homepage activity
                     navigateToHomePageActivity()
                 } else {
-                    // Login failed
                     val errorMessage = when (task.exception?.message) {
                         "There is no user record corresponding to this identifier. The user may have been deleted." ->
                             "Akun tidak ditemukan"
@@ -107,10 +100,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            // User is already signed in, redirect to homepage activity
             navigateToHomePageActivity()
         }
     }

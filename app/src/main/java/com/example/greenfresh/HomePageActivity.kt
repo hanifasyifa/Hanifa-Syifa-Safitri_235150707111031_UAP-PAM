@@ -29,7 +29,6 @@ class HomePageActivity : AppCompatActivity() {
     private lateinit var plantRepository: PlantRepository
     private val plantList = mutableListOf<Plant>()
 
-    // Activity result launcher for add/edit plant
     private val addEditPlantLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -49,7 +48,6 @@ class HomePageActivity : AppCompatActivity() {
         setupRecyclerView()
         setupClickListeners()
 
-        // Check internet connection before loading
         if (isInternetAvailable()) {
             loadPlantsFromApi()
         } else {
@@ -78,7 +76,6 @@ class HomePageActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@HomePageActivity)
             adapter = plantAdapter
 
-            // Add divider between items
             val dividerItemDecoration = DividerItemDecoration(
                 this@HomePageActivity,
                 LinearLayoutManager.VERTICAL
@@ -89,13 +86,11 @@ class HomePageActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         binding.btnTambahList.setOnClickListener {
-            // Navigate to add plant activity
             val intent = Intent(this, AddEditPlantActivity::class.java)
             intent.putExtra("IS_EDIT_MODE", false)
             addEditPlantLauncher.launch(intent)
         }
 
-        // Add refresh functionality
         binding.swipeRefreshLayout?.setOnRefreshListener {
             if (isInternetAvailable()) {
                 loadPlantsFromApi()
@@ -117,18 +112,15 @@ class HomePageActivity : AppCompatActivity() {
                             if (plants.isNotEmpty()) {
                                 plantAdapter.updateData(plants)
 
-                                // Show success message
                                 Toast.makeText(
                                     this@HomePageActivity,
                                     "Data berhasil dimuat dari server",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                // Show/hide empty state
                                 binding.tvEmptyState?.visibility = View.GONE
                                 binding.rvPlantList.visibility = View.VISIBLE
                             } else {
-                                // If API returns empty data, show empty state
                                 binding.tvEmptyState?.visibility = View.VISIBLE
                                 binding.rvPlantList.visibility = View.GONE
 
@@ -171,7 +163,6 @@ class HomePageActivity : AppCompatActivity() {
             Toast.LENGTH_LONG
         ).show()
 
-        // Load dummy data as fallback
         loadDummyData()
         setLoading(false)
     }
@@ -207,7 +198,6 @@ class HomePageActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
 
-                            // Remove from local list and refresh
                             loadPlantsFromApi()
                         }
                     }
@@ -280,9 +270,7 @@ class HomePageActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is still signed in
         if (auth.currentUser == null) {
-            // User is not signed in, redirect to welcome activity
             val intent = Intent(this, WelcomeActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -292,7 +280,6 @@ class HomePageActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Only refresh from API if internet is available
         if (isInternetAvailable()) {
             loadPlantsFromApi()
         }

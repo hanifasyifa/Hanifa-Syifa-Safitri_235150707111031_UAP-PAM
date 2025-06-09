@@ -40,7 +40,6 @@ class PlantRepository {
     suspend fun getPlantByName(plantName: String): Result<Plant> {
         return withContext(Dispatchers.IO) {
             try {
-                // Encode plant name to handle spaces and special characters
                 val encodedPlantName = URLEncoder.encode(plantName, "UTF-8")
                 val response = apiService.getPlantByName(encodedPlantName)
 
@@ -96,7 +95,6 @@ class PlantRepository {
     suspend fun updatePlant(plantName: String, plantRequest: PlantRequest): Result<Plant> {
         return withContext(Dispatchers.IO) {
             try {
-                // Encode plant name to handle spaces and special characters
                 val encodedPlantName = URLEncoder.encode(plantName, "UTF-8")
                 val response = apiService.updatePlant(encodedPlantName, plantRequest)
 
@@ -126,7 +124,6 @@ class PlantRepository {
     suspend fun deletePlant(plantName: String): Result<String> {
         return withContext(Dispatchers.IO) {
             try {
-                // Encode plant name to handle spaces and special characters
                 val encodedPlantName = URLEncoder.encode(plantName, "UTF-8")
                 val response = apiService.deletePlant(encodedPlantName)
 

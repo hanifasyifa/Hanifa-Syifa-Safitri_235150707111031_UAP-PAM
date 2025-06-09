@@ -24,7 +24,6 @@ class AddEditPlantActivity : AppCompatActivity() {
 
         plantRepository = PlantRepository()
 
-        // Check if this is edit mode
         isEditMode = intent.getBooleanExtra("IS_EDIT_MODE", false)
         originalPlantName = intent.getStringExtra("PLANT_NAME") ?: ""
 
@@ -48,7 +47,6 @@ class AddEditPlantActivity : AppCompatActivity() {
             }
         }
 
-        // Enable back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -77,7 +75,6 @@ class AddEditPlantActivity : AppCompatActivity() {
             val price = etPlantPrice.text.toString().trim()
             val description = etPlantDescription.text.toString().trim()
 
-            // Clear previous errors
             etPlantName.error = null
             etPlantPrice.error = null
             etPlantDescription.error = null
@@ -100,7 +97,6 @@ class AddEditPlantActivity : AppCompatActivity() {
                 return false
             }
 
-            // Validate if price is a valid number
             try {
                 val cleanPrice = price.replace("Rp", "").replace(".", "").replace(",", "").trim()
                 val priceValue = cleanPrice.toDouble()
@@ -188,7 +184,6 @@ class AddEditPlantActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                // Use the original plant name for the API call, not the potentially new name
                 plantRepository.updatePlant(originalPlantName, plantRequest)
                     .onSuccess { plant ->
                         runOnUiThread {
@@ -266,14 +261,12 @@ class AddEditPlantActivity : AppCompatActivity() {
     }
 
     private fun formatPrice(price: String): String {
-        // Format price to ensure consistency
         val cleanPrice = price.replace("Rp", "").replace(".", "").replace(",", "").trim()
         return if (price.startsWith("Rp")) price else "Rp $cleanPrice"
     }
 
     private fun setLoading(isLoading: Boolean) {
         binding.apply {
-            // Show/hide progress bar if it exists in your layout
             try {
                 progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
             } catch (e: Exception) {
@@ -285,7 +278,6 @@ class AddEditPlantActivity : AppCompatActivity() {
             etPlantPrice.isEnabled = !isLoading
             etPlantDescription.isEnabled = !isLoading
 
-            // Update button text while loading
             btnSave.text = if (isLoading) {
                 if (isEditMode) "Mengupdate..." else "Menyimpan..."
             } else {
